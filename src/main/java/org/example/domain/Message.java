@@ -1,24 +1,27 @@
 package org.example.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.example.config.db.DbWorker;
 
-@Entity
+import java.sql.SQLException;
+
 public class Message {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
-    private String text;
+    private Integer id;
     private String tag;
+    private String text;
 
     public Message() {
     }
 
-    public Message(String text, String tag) {
-        this.text = text;
+    public Message(String tag, String text) throws SQLException {
+        this.id = DbWorker.getInstance().getDbId();
         this.tag = tag;
+        this.text = text;
+    }
+
+    public Message(Integer id, String tag, String text) {
+        this.id = id;
+        this.tag = tag;
+        this.text = text;
     }
 
     public void setText(String text) {
@@ -29,11 +32,11 @@ public class Message {
         return text;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

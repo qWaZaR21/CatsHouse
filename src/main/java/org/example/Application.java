@@ -14,14 +14,6 @@ public class Application {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         SpringApplication.run(Application.class, args);
-
-        ResultSet resultSet = DbWorker.getInstance().executeSelectQuery("select * from persons;");
-
-        while (resultSet.next()) {
-            System.out.println(resultSet.getInt(1) + " " + resultSet.getInt(2));
-        }
-
-        resultSet.close();
     }
 
 }

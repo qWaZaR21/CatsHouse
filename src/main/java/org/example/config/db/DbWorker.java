@@ -50,4 +50,14 @@ public final class DbWorker {
         }
         return stm;
     }
+
+    public Integer getDbId() throws SQLException {
+        ResultSet resultSet = executeSelectQuery("select getDbId();");
+        if (!resultSet.next()) {
+            return null;
+        }
+        int id = resultSet.getInt(1);
+        resultSet.close();
+        return id;
+    }
 }
